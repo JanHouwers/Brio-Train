@@ -2,11 +2,11 @@
 
 > **Status note.** The mechanical instructions below were written for the earlier OpenSCAD/FreeCAD
 > version of the parts. The mechanics (drive concept, axles, magnets, screw positions) are unchanged,
-> but the current geometry lives in the Rhino/STEP files in [`../cad/`](../cad/) and the repository
-> contains **no print-ready STLs yet** — export them from `Train.3dm`/`Train.stp`,
-> `Remote.3dm`/`Remote.stp` and `pulley-and-wheels.3dm`/`.stp` yourself and check the details against
-> that geometry before printing. The electrical side is current: see
-> [`wiring-loco.md`](wiring-loco.md) and [`wiring-remote.md`](wiring-remote.md).
+> but the current geometry lives in the Rhino/STEP files in [`../cad/`](../cad/), and the body is now
+> split into four printable pieces instead of one. Print-ready meshes are in
+> [`../stl/`](../stl/) — check the details below against that geometry before printing. The
+> electrical side is current: see [`wiring-loco.md`](wiring-loco.md) and
+> [`wiring-remote.md`](wiring-remote.md).
 
 ## Drive concept — read before printing
 
@@ -22,16 +22,16 @@ Speed: 150 rpm × Ø21 effective ≈ **16 cm/s**, capped further in firmware via
 
 PETG, 0.4 nozzle, 0.2 mm layers, 3 perimeters, 20 % infill.
 
-| Part | Qty | Orientation | Notes |
+| File in [`../stl/`](../stl/) | Qty | Orientation | Notes |
 |------|-----|-------------|-------|
-| loco chassis | 1 | as-is (plate down) | supports under the motor box + coupler arms |
-| loco body | 1 | as-is (open bottom down) | supports in the wheel arches / window tops |
-| wheel, press-fit | 2 | as-is | front wheels, press onto the Ø3 rod |
-| wheel, driven | 1 | as-is (outer face down) | rear right, belt hub inward |
-| wheel, free | 1 | as-is | rear left, add an M3 washer against the boss |
-| pulley | 1 | as-is | D-bore, push onto the N20 shaft |
-| e-shelf | 1 | as-is | tray on the battery-bay rim |
-| remote bottom / top | 1+1 | flat face down (top printed upside-down) | no supports needed; the small board-retention lips are short flat overhangs and print fine |
+| `loco-chassis.stl` | 1 | as-is (plate down) | supports under the motor box + coupler arms |
+| `loco-boiler.stl` | 1 | as-is | supports in the wheel arches |
+| `loco-cab.stl` | 1 | as-is | supports at the window tops |
+| `loco-front.stl` | 1 | as-is | short part, prints flat against the plate |
+| `loco-wheel-plain.stl` | 3 | as-is | 2× front (press onto the Ø3 rod), 1× rear left with an M3 washer against the boss |
+| `loco-wheel-driven.stl` | 1 | as-is (outer face down) | rear right, belt hub inward |
+| `loco-pulley.stl` | 1 | as-is | D-bore, push onto the N20 shaft |
+| `remote-bottom.stl` / `remote-top.stl` | 1+1 | flat face down (top printed upside-down) | no supports needed; the small board-retention lips are short flat overhangs and print fine |
 
 Wall count ≥ 3 for the wheels — the hub takes the drive load.
 
@@ -50,14 +50,21 @@ Wall count ≥ 3 for the wheels — the hub takes the drive load.
    (0.1–0.2 mm clearance under the rod so wheels and rod spin together).
 5. **Electronics**: 2S charger flat against the inside of the body rear wall — the USB-C opening sits
    slightly left of centre (the board occupies the left ~two-thirds of the wall). The power switch
-   stands **vertically** in the slot near the right rear corner. Buck + DRV8833 + XIAO go on the
-   e-shelf on top of the bay. Wire per [`wiring-loco.md`](wiring-loco.md) — **firmware first, wiring
-   second**, and follow the order of assembly in that document.
+   stands **vertically** in the slot near the right rear corner. Buck + DRV8833 + XIAO sit on top of
+   the battery bay. Wire per [`wiring-loco.md`](wiring-loco.md) — **firmware first, wiring second**,
+   and follow the order of assembly in that document.
+
+   > The separate e-shelf tray of the earlier design is not part of the current CAD; check how the
+   > boards are retained in `Train.3dm` before wiring them in.
 6. **Magnets**: check the polarity against a real Brio wagon **before** gluing the Ø10×3 magnets into
    the coupler pockets (epoxy).
-7. **Body**: drop over the chassis, 2× M3×12 from below into the internal pillars. Both screws sit
-   off-centre: front at y = +10, rear at y = −12 (diagonally opposed), keeping the rear wall free for
-   the charger board. The cab front wall has a notch that fits over the motor box.
+7. **Body**: the body is three printed pieces on top of the chassis — front, boiler and cab. They
+   drop over the chassis and are secured with 2× M3×12 from below into the internal pillars. Both
+   screws sit off-centre: front at y = +10, rear at y = −12 (diagonally opposed), keeping the rear
+   wall free for the charger board. The cab front wall has a notch that fits over the motor box.
+
+   > The split into four pieces is new in this CAD revision; how the three body parts join to each
+   > other (glue, pins, screws) is not documented yet — check the mating features in `Train.3dm`.
 
 ## Assembly — remote
 

@@ -33,6 +33,8 @@ cad/
   Train.3dm / .stp             locomotive body + chassis
   Remote.3dm / .stp            remote enclosure
   pulley-and-wheels.3dm / .stp drive pulley and wheels
+stl/
+  9 print-ready meshes, generated from the STEP files above
 docs/
   bom.md            bill of materials
   wiring-loco.md    wire list L1–L29, measurements, DRV8833 module notes
@@ -69,8 +71,11 @@ radio link, the headlight and the horn.
 
 ### 2. Print the parts
 
-Export STLs from the CAD in [`cad/`](cad/), then see [`docs/assembly.md`](docs/assembly.md) for
-orientation, supports and print settings. PETG, 0.4 nozzle, 0.2 mm layers, 3 perimeters, 20 % infill.
+Nine parts, ready to slice, in [`stl/`](stl/) — see [`stl/README.md`](stl/README.md) for the part
+list and quantities, and [`docs/assembly.md`](docs/assembly.md) for orientation, supports and print
+settings. PETG, 0.4 nozzle, 0.2 mm layers, 3 perimeters, 20 % infill.
+
+The STLs are derived from the STEP files in [`cad/`](cad/); the CAD is the source of truth.
 
 ### 3. Order the parts
 

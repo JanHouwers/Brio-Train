@@ -1,0 +1,51 @@
+# Licensing
+
+This repository contains both software and open hardware design files, which are
+licensed differently.
+
+Copyright (c) 2026 Jan Houwers.
+
+## Firmware — MIT
+
+Everything under `firmware/` is licensed under the **MIT License**.
+Full text: [`LICENSES/MIT.txt`](LICENSES/MIT.txt).
+
+SPDX-License-Identifier: MIT
+
+## Hardware, CAD and documentation — CERN-OHL-S v2
+
+Everything else — the CAD sources in `cad/`, the wiring diagrams in `hardware/`, and the
+documentation in `docs/` and this README — is licensed under the
+**CERN Open Hardware Licence Version 2 — Strongly Reciprocal**.
+Full text: [`LICENSES/CERN-OHL-S-v2.txt`](LICENSES/CERN-OHL-S-v2.txt).
+
+SPDX-License-Identifier: CERN-OHL-S-2.0
+
+In short: you may use, study, modify and distribute these designs, and make and sell products
+based on them, provided that you pass on the complete source of your modifications under the same
+licence and keep the notices intact. See the licence text for the exact terms.
+
+## Notice for products made from these designs
+
+If you make or distribute a product based on this design, CERN-OHL-S v2 requires you to include a
+notice. A suitable form:
+
+```
+This product is made from a design licensed under CERN-OHL-S v2:
+https://github.com/JanHouwers/Brio-Train
+Source available under CERN-OHL-S v2 at the above location.
+```
+
+## Disclaimer
+
+These designs are provided **as is**, without warranty of any kind, and without any warranty of
+fitness for a particular purpose or of non-infringement. Lithium-ion cells, chargers and motor
+drivers can cause fire or injury if built or used incorrectly. You are responsible for verifying
+the design and the safety of anything you build from it. See also the safety notes in
+[`docs/assembly.md`](docs/assembly.md).
+
+## Trademarks
+
+BRIO is a trademark of BRIO AB. This is an independent, unaffiliated hobby project; the wheel and
+coupler geometry is designed to be compatible with BRIO-style wooden track. No endorsement is
+implied.

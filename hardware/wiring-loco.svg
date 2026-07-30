@@ -1,0 +1,363 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1270" width="1600" height="1270" font-family="Segoe UI, Arial, sans-serif" font-size="13">
+  <style>
+    .box{fill:#f7f9fb;stroke:#33475b;stroke-width:1.6}
+    .hdr{font-weight:700;font-size:14px;fill:#16283c}
+    .pin{font-size:12px;fill:#33475b}
+    .sub{font-size:11px;fill:#6b7a8d}
+    .w{stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .hv{stroke-width:3.4}
+    .pos{stroke:#c62828}
+    .neg{stroke:#212121}
+    .sig{stroke:#1565c0}
+    .v33{stroke:#ef6c00}
+    .bal{stroke:#9e7b00}
+    .mot{stroke:#6a1b9a}
+    .gp{stroke:#212121;stroke-width:2.8;fill:none}
+    .gs{stroke:#00695c;stroke-width:2.8;fill:none}
+    .wn{font-size:11px;font-weight:700;fill:#16283c}
+    .note{font-size:11.5px;fill:#4a5a6a}
+    .warn{font-size:11.5px;fill:#b71c1c;font-weight:600}
+  </style>
+
+  <rect x="0" y="0" width="1600" height="1270" fill="#ffffff"/>
+
+  <text x="30" y="32" font-size="19" class="hdr">LOCOMOTIVE — wiring diagram rev D  ·  2S (2× XTAR 14500) + XIAO ESP32-C5 + DRV8833</text>
+  <text x="30" y="52" class="note">Every wire has a number (L1…L29) matching the wire list. Filled dot = connection. Crossing without a dot = NO connection. Thick line = motor current, AWG20.</text>
+  <text x="30" y="70" class="warn">No nSLEEP/nFAULT control: nothing is soldered on the module. EEP is tied to 3V3 (L17), ULT is left floating. Firmware: HAVE_NSLEEP 0 and HAVE_NFAULT 0.</text>
+
+  <line class="w pos" x1="1020" y1="32" x2="1052" y2="32"/><text x="1058" y="36" class="sub">batt +</text>
+  <line class="w bal" x1="1120" y1="32" x2="1152" y2="32"/><text x="1158" y="36" class="sub">balance</text>
+  <line class="w v33" x1="1220" y1="32" x2="1252" y2="32"/><text x="1258" y="36" class="sub">3V3</text>
+  <line class="w sig" x1="1310" y1="32" x2="1342" y2="32"/><text x="1348" y="36" class="sub">signal</text>
+  <line class="w mot" x1="1410" y1="32" x2="1442" y2="32"/><text x="1448" y="36" class="sub">motor</text>
+  <line class="w neg" x1="1505" y1="32" x2="1537" y2="32"/><text x="1543" y="36" class="sub">ground</text>
+
+  <!-- ============ 2S pack ============ -->
+  <rect x="40" y="90" width="230" height="160" class="box"/>
+  <text x="56" y="116" class="hdr">BT1/BT2 — 2S pack</text>
+  <text x="56" y="136" class="pin">2× XTAR 14500, protected</text>
+  <text x="56" y="152" class="pin">in series: 6.0–8.4 V</text>
+  <text x="56" y="176" class="sub">The cells sit antiparallel. The jumper</text>
+  <text x="56" y="191" class="sub">at the far end is both the series link and</text>
+  <text x="56" y="206" class="sub">the tap point for MID. AWG20.</text>
+  <text x="80" y="242" class="pin" text-anchor="middle">−</text>
+  <text x="155" y="242" class="pin" text-anchor="middle">MID</text>
+  <text x="230" y="242" class="pin" text-anchor="middle">+</text>
+  <circle cx="80" cy="250" r="4" fill="#212121"/>
+  <circle cx="155" cy="250" r="4" fill="#9e7b00"/>
+  <circle cx="230" cy="250" r="4" fill="#c62828"/>
+
+  <!-- ============ 2S charger ============ -->
+  <rect x="40" y="470" width="230" height="170" class="box"/>
+  <text x="80" y="462" class="pin" text-anchor="middle">B−</text>
+  <text x="155" y="462" class="pin" text-anchor="middle">BM</text>
+  <text x="230" y="462" class="pin" text-anchor="middle">B+</text>
+  <circle cx="80" cy="470" r="4" fill="#212121"/>
+  <circle cx="155" cy="470" r="4" fill="#9e7b00"/>
+  <circle cx="230" cy="470" r="4" fill="#c62828"/>
+  <text x="56" y="498" class="hdr">U1 — 2S USB-C balance charger</text>
+  <text x="56" y="516" class="pin">IP2326 type, 8.4 V</text>
+  <text x="56" y="540" class="sub">BM MUST be wired. Never use a</text>
+  <text x="56" y="555" class="sub">1S board on this pack.</text>
+  <text x="56" y="576" class="sub">Check the charge current: many boards</text>
+  <text x="56" y="591" class="sub">ship at 2 A. For 1200 mAh cells</text>
+  <text x="56" y="606" class="sub">max 1 A, preferably 0.5 A (ISET resistor).</text>
+  <rect x="30" y="500" width="14" height="40" fill="#33475b"/>
+  <text x="56" y="628" class="sub">USB-C</text>
+
+  <!-- ============ ground-legenda ============ -->
+  <rect x="40" y="690" width="230" height="196" class="box"/>
+  <text x="56" y="716" class="hdr">GROUND — two nodes</text>
+  <g class="gp"><path d="M64 730 V744"/><path d="M50 744 H78"/><path d="M55 750 H73"/><path d="M60 756 H68"/></g>
+  <text x="88" y="742" class="pin">PWR — star point at PACK−</text>
+  <text x="88" y="758" class="sub">pack−, buck IN−, DRV8833, C3/C4</text>
+  <g class="gs"><path d="M64 790 V804"/><path d="M50 804 H78"/><path d="M55 810 H73"/><path d="M60 816 H68"/></g>
+  <text x="88" y="802" class="pin">SIG — GND pin of the XIAO</text>
+  <text x="88" y="818" class="sub">divider, C2, LED1, BZ1</text>
+  <text x="56" y="842" class="sub">The only connection between the two runs</text>
+  <text x="56" y="857" class="sub">via the buck (L8 ↔ L10). Do NOT add a</text>
+  <text x="56" y="872" class="warn">second wire between them.</text>
+
+  <!-- ============ SW1 ============ -->
+  <rect x="340" y="90" width="180" height="120" class="box"/>
+  <text x="356" y="116" class="hdr">SW1 — master switch</text>
+  <text x="356" y="134" class="pin">1P2T slide switch</text>
+  <text x="356" y="166" class="sub">middle = common</text>
+  <text x="356" y="181" class="sub">outer pin 3 = leave free</text>
+  <text x="356" y="200" class="warn">≥2 A required — see note 7</text>
+  <text x="332" y="154" class="pin" text-anchor="end">2</text>
+  <circle cx="340" cy="150" r="4" fill="#c62828"/>
+  <text x="528" y="124" class="pin">1</text>
+  <circle cx="520" cy="120" r="4" fill="#c62828"/>
+  <text x="528" y="184" class="pin">3 n.c.</text>
+  <circle cx="520" cy="180" r="4" fill="none" stroke="#33475b" stroke-width="1.6"/>
+
+  <!-- ============ buck ============ -->
+  <rect x="600" y="90" width="200" height="150" class="box"/>
+  <text x="616" y="116" class="hdr">U2 — buck</text>
+  <text x="616" y="134" class="pin">MP1584EN, adjustable</text>
+  <text x="612" y="164" class="pin">IN+</text>
+  <circle cx="600" cy="160" r="4" fill="#c62828"/>
+  <text x="788" y="164" class="pin" text-anchor="end">OUT+</text>
+  <circle cx="800" cy="160" r="4" fill="#c62828"/>
+  <text x="788" y="194" class="pin" text-anchor="end">OUT−</text>
+  <circle cx="800" cy="190" r="4" fill="#212121"/>
+  <text x="616" y="216" class="warn">set to 5.0 V — adjustable type,</text>
+  <text x="616" y="232" class="sub">not a fixed Mini-560, see note 3</text>
+  <text x="650" y="256" class="pin" text-anchor="middle">IN−</text>
+  <circle cx="650" cy="240" r="4" fill="#212121"/>
+
+  <!-- ============ XIAO ============ -->
+  <rect x="890" y="90" width="270" height="430" class="box"/>
+  <text x="906" y="116" class="hdr">U3 — Seeed XIAO ESP32-C5</text>
+  <text x="906" y="134" class="sub">powered from the 5V pin via the buck (5.0 V)</text>
+  <text x="906" y="150" class="warn">D2/GPIO25 and D3/GPIO7 = strapping — leave free</text>
+  <circle cx="890" cy="160" r="4" fill="#c62828"/>
+  <text x="902" y="164" class="pin">5V</text>
+  <circle cx="890" cy="190" r="4" fill="#212121"/>
+  <text x="902" y="194" class="pin">GND — this is the SIG node</text>
+  <circle cx="890" cy="460" r="4" fill="#1565c0"/>
+  <text x="902" y="464" class="pin">D0 / GPIO1 · ADC1_CH0</text>
+  <text x="902" y="478" class="sub">the only ADC on the header</text>
+
+  <circle cx="1160" cy="250" r="4" fill="#1565c0"/>
+  <text x="1150" y="254" class="pin" text-anchor="end">D9 / GPIO9 — headlight</text>
+  <circle cx="1160" cy="300" r="4" fill="#1565c0"/>
+  <text x="1150" y="304" class="pin" text-anchor="end">D10 / GPIO10 — horn</text>
+  <circle cx="1160" cy="400" r="4" fill="#ef6c00"/>
+  <text x="1150" y="404" class="pin" text-anchor="end">3V3 (output)</text>
+
+  <text x="906" y="490" class="sub">underside → DRV8833:</text>
+  <text x="906" y="506" class="sub">D4/GPIO23  D5/GPIO24   ·   D1 and D8 stay free</text>
+  <circle cx="930" cy="520" r="4" fill="#1565c0"/>
+  <circle cx="980" cy="520" r="4" fill="#1565c0"/>
+
+  <!-- ============ DRV8833 ============ -->
+  <rect x="860" y="620" width="330" height="290" class="box"/>
+  <text x="930" y="612" class="pin" text-anchor="middle">IN1</text>
+  <text x="980" y="612" class="pin" text-anchor="middle">IN2</text>
+  <text x="1032" y="600" class="pin" text-anchor="middle">EEP</text>
+  <text x="1090" y="612" class="pin" text-anchor="middle">ULT n.c.</text>
+  <circle cx="930" cy="620" r="4" fill="#1565c0"/>
+  <circle cx="980" cy="620" r="4" fill="#1565c0"/>
+  <circle cx="1030" cy="620" r="4" fill="#1565c0"/>
+  <circle cx="1080" cy="620" r="4" fill="none" stroke="#33475b" stroke-width="1.6"/>
+  <text x="876" y="656" class="hdr">U4 — DRV8833 module (black, 6+6 pin)</text>
+  <text x="876" y="674" class="pin">EEP = nSLEEP · ULT = nFAULT · channel A</text>
+  <circle cx="860" cy="690" r="4" fill="#c62828"/>
+  <text x="872" y="694" class="pin">VCC  (= VM, 8.4 V here)</text>
+  <circle cx="860" cy="780" r="4" fill="#212121"/>
+  <text x="872" y="784" class="pin">GND</text>
+  <text x="876" y="716" class="warn">VCC = VM = 8.4 V — the DRV8833 has no</text>
+  <text x="876" y="730" class="warn">separate logic supply, and its logic</text>
+  <text x="876" y="744" class="warn">pins take 7 V maximum. Solder bridge J1</text>
+  <text x="876" y="758" class="warn">(EEP to VCC) must therefore NOT be closed.</text>
+  <text x="876" y="812" class="sub">EEP is held high via L17 from the</text>
+  <text x="876" y="826" class="sub">3V3 pin of the XIAO. Without that the</text>
+  <text x="876" y="840" class="sub">internal 500k pulldown drags it low and</text>
+  <text x="876" y="854" class="sub">the driver stays asleep.</text>
+  <text x="876" y="874" class="sub">Do not connect IN3/IN4/OUT3/OUT4 (channel B).</text>
+  <text x="876" y="888" class="sub">The module already has 10 µF on VCC.</text>
+  <text x="1178" y="844" class="pin" text-anchor="end">OUT1 ●</text>
+  <circle cx="1190" cy="840" r="4" fill="#6a1b9a"/>
+  <text x="1178" y="894" class="pin" text-anchor="end">OUT2 ●</text>
+  <circle cx="1190" cy="890" r="4" fill="#6a1b9a"/>
+  <text x="960" y="902" class="pin" text-anchor="middle">GND</text>
+  <circle cx="960" cy="910" r="4" fill="#212121"/>
+
+  <!-- ============ motor ============ -->
+  <rect x="1270" y="790" width="220" height="140" class="box"/>
+  <text x="1286" y="818" class="hdr">M1 — N20 6 V</text>
+  <text x="1286" y="836" class="pin">150 rpm, metal gears</text>
+  <circle cx="1270" cy="840" r="4" fill="#6a1b9a"/>
+  <circle cx="1270" cy="890" r="4" fill="#6a1b9a"/>
+  <text x="1282" y="872" class="pin">terminal A</text>
+  <text x="1282" y="908" class="pin">terminal B</text>
+  <text x="1286" y="924" class="sub">solder C5 10 nF across the terminals</text>
+
+  <!-- ============ C3/C4 ============ -->
+  <rect x="610" y="620" width="230" height="150" class="box"/>
+  <text x="626" y="646" class="hdr">C3 / C4 — decoupling</text>
+  <text x="626" y="666" class="sub">C3 100 µF low-ESR, ≥16 V</text>
+  <text x="626" y="682" class="sub">C4 100 nF in parallel</text>
+  <text x="626" y="704" class="sub">HF decoupling for the H-bridge —</text>
+  <text x="626" y="719" class="sub">keeps the switching current in a loop</text>
+  <text x="626" y="734" class="sub">of 2 cm. Straight onto the VM and</text>
+  <text x="626" y="749" class="sub">GND pins of the module.</text>
+  <circle cx="840" cy="690" r="4" fill="#c62828"/>
+  <circle cx="840" cy="740" r="4" fill="#212121"/>
+
+  <!-- ============ deler ============ -->
+  <rect x="300" y="790" width="240" height="200" class="box"/>
+  <text x="315" y="814" class="hdr">Pack voltage divider + filter</text>
+  <circle cx="400" cy="790" r="4" fill="#c62828"/>
+  <line class="w pos" x1="400" y1="790" x2="400" y2="825"/>
+  <rect x="370" y="825" width="60" height="26" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="362" y="843" class="sub" text-anchor="end">R3 200k</text>
+  <line class="w sig" x1="400" y1="851" x2="400" y2="900"/>
+  <rect x="370" y="900" width="60" height="26" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="362" y="918" class="sub" text-anchor="end">R4 100k</text>
+  <line class="w neg" x1="400" y1="926" x2="400" y2="990"/>
+  <line class="w sig" x1="400" y1="875" x2="540" y2="875"/>
+  <circle cx="400" cy="875" r="5" fill="#1565c0"/>
+  <circle cx="540" cy="875" r="4" fill="#1565c0"/>
+  <text x="408" y="869" class="sub">tap</text>
+  <line class="w sig" x1="480" y1="875" x2="480" y2="905"/>
+  <circle cx="480" cy="875" r="5" fill="#1565c0"/>
+  <line x1="464" y1="905" x2="496" y2="905" stroke="#33475b" stroke-width="2.6"/>
+  <line x1="464" y1="913" x2="496" y2="913" stroke="#33475b" stroke-width="2.6"/>
+  <line class="w neg" x1="480" y1="913" x2="480" y2="955"/>
+  <line class="w neg" x1="480" y1="955" x2="400" y2="955"/>
+  <circle cx="400" cy="955" r="5" fill="#212121"/>
+  <text x="446" y="938" class="sub">C1 100 nF</text>
+  <text x="315" y="982" class="sub">8.4 V → 2.80 V · 28 µA</text>
+
+  <!-- ============ koplamp ============ -->
+  <rect x="1240" y="200" width="250" height="100" class="box"/>
+  <text x="1256" y="222" class="hdr">LED1 — headlight (white)</text>
+  <circle cx="1240" cy="250" r="4" fill="#1565c0"/>
+  <line class="w sig" x1="1240" y1="250" x2="1272" y2="250"/>
+  <rect x="1272" y="238" width="54" height="24" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="1299" y="254" class="sub" text-anchor="middle">R1 47Ω</text>
+  <line class="w sig" x1="1326" y1="250" x2="1380" y2="250"/>
+  <polygon points="1380,240 1380,260 1402,250" fill="#455a64" stroke="#455a64"/>
+  <line x1="1402" y1="238" x2="1402" y2="262" stroke="#455a64" stroke-width="2.4"/>
+  <text x="1378" y="236" class="sub">A</text>
+  <text x="1406" y="236" class="sub">K</text>
+  <line class="w neg" x1="1402" y1="250" x2="1490" y2="250"/>
+  <circle cx="1490" cy="250" r="4" fill="#212121"/>
+  <text x="1256" y="288" class="sub">use a white LED with Vf ≤ 2.9 V</text>
+
+  <!-- ============ buzzer ============ -->
+  <rect x="1240" y="330" width="250" height="100" class="box"/>
+  <text x="1256" y="352" class="hdr">BZ1 — passive piezo</text>
+  <circle cx="1240" cy="380" r="4" fill="#1565c0"/>
+  <line class="w sig" x1="1240" y1="380" x2="1272" y2="380"/>
+  <rect x="1272" y="368" width="54" height="24" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="1299" y="384" class="sub" text-anchor="middle">R2 100Ω</text>
+  <line class="w sig" x1="1326" y1="380" x2="1386" y2="380"/>
+  <rect x="1386" y="366" width="26" height="28" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <line class="w neg" x1="1412" y1="380" x2="1490" y2="380"/>
+  <circle cx="1490" cy="380" r="4" fill="#212121"/>
+  <text x="1256" y="418" class="sub">660 Hz from the firmware</text>
+
+  <!-- ============ nFAULT pull-up ============ -->
+  <rect x="1240" y="440" width="250" height="150" class="ib"/>
+  <text x="1256" y="464" class="hdr">NOT CONNECTED</text>
+  <text x="1256" y="484" class="sub">ULT (nFAULT) is left floating. There is</text>
+  <text x="1256" y="498" class="sub">a 47k pull-up to VCC on the module,</text>
+  <text x="1256" y="512" class="sub">and VCC is 8.4 V here — so it must not go</text>
+  <text x="1256" y="526" class="sub">straight onto a 3.3 V GPIO.</text>
+  <text x="1256" y="546" class="sub">Consequence: no detection of short circuit</text>
+  <text x="1256" y="560" class="sub">or overheating. A stalled locomotive</text>
+  <text x="1256" y="574" class="sub">would not trip nFAULT anyway (OCP = 2–3.3 A).</text>
+  <text x="1256" y="588" class="warn">firmware: HAVE_NFAULT 0</text>
+
+  <!-- ============ WIRES ============ -->
+  <path class="w pos hv" d="M230 250 V470"/>
+  <text x="238" y="380" class="wn" fill="#c62828">L1</text>
+
+  <path class="w pos hv" d="M230 300 H300 V150 H340"/>
+  <circle cx="230" cy="300" r="5" fill="#c62828"/>
+  <text x="306" y="240" class="wn" fill="#c62828">L2</text>
+
+  <path class="w bal" d="M155 250 V470"/>
+  <text x="163" y="380" class="wn" fill="#9e7b00">L3</text>
+
+  <path class="w neg hv" d="M80 250 V470"/>
+  <text x="88" y="380" class="wn">L4</text>
+
+  <path class="w neg hv" d="M80 300 H25"/>
+  <circle cx="80" cy="300" r="5" fill="#212121"/>
+  <g class="gp"><path d="M25 300 V314"/><path d="M11 314 H39"/><path d="M16 320 H34"/><path d="M21 326 H29"/></g>
+  <text x="25" y="342" class="sub" text-anchor="middle">PWR</text>
+  <text x="46" y="296" class="wn">L5</text>
+
+  <path class="w pos hv" d="M520 120 H560 V160 H600"/>
+  <text x="566" y="112" class="wn" fill="#c62828">L6</text>
+
+  <path class="w pos hv" d="M560 160 V340 H850 V690 H860"/>
+  <circle cx="560" cy="160" r="5" fill="#c62828"/>
+  <text x="700" y="334" class="wn" fill="#c62828">L7</text>
+
+  <path class="w neg" d="M650 240 V290"/>
+  <g class="gp"><path d="M650 290 V304"/><path d="M636 304 H664"/><path d="M641 310 H659"/><path d="M646 316 H654"/></g>
+  <text x="650" y="332" class="sub" text-anchor="middle">PWR</text>
+  <text x="658" y="272" class="wn">L8</text>
+
+  <path class="w pos" d="M800 160 H890"/>
+  <text x="826" y="152" class="wn" fill="#c62828">L9</text>
+
+  <path class="w neg" d="M800 190 H890"/>
+  <text x="826" y="182" class="wn">L10</text>
+  <path class="w neg" d="M860 190 V228"/>
+  <circle cx="860" cy="190" r="5" fill="#212121"/>
+  <g class="gs"><path d="M860 228 V242"/><path d="M846 242 H874"/><path d="M851 248 H869"/><path d="M856 254 H864"/></g>
+  <text x="860" y="270" class="sub" text-anchor="middle">SIG</text>
+
+  <path class="w neg hv" d="M960 910 V952"/>
+  <g class="gp"><path d="M960 952 V966"/><path d="M946 966 H974"/><path d="M951 972 H969"/><path d="M956 978 H964"/></g>
+  <text x="960" y="994" class="sub" text-anchor="middle">PWR</text>
+  <text x="968" y="936" class="wn">L11</text>
+
+  <path class="w pos" d="M840 690 H850"/>
+  <circle cx="850" cy="690" r="5" fill="#c62828"/>
+  <text x="812" y="684" class="wn" fill="#c62828">L12</text>
+
+  <path class="w neg" d="M840 740 H848 V780 H860"/>
+  <text x="812" y="758" class="wn">L13</text>
+
+  <path class="w pos" d="M560 300 H400 V790"/>
+  <circle cx="560" cy="300" r="5" fill="#c62828"/>
+  <text x="408" y="600" class="wn" fill="#c62828">L14</text>
+
+  <path class="w sig" d="M930 520 V620"/>
+  <text x="906" y="566" class="wn" fill="#1565c0">L15</text>
+  <path class="w sig" d="M980 520 V620"/>
+  <text x="958" y="588" class="wn" fill="#1565c0">L16</text>
+  <path class="w v33" d="M1160 400 H1210 V560 H1030 V620"/>
+  <text x="1040" y="554" class="wn" fill="#ef6c00">L17</text>
+
+
+
+
+  <path class="w sig" d="M1160 250 H1240"/>
+  <text x="1182" y="244" class="wn" fill="#1565c0">L22</text>
+
+  <path class="w neg" d="M1490 250 H1522 V282"/>
+  <g class="gs"><path d="M1522 282 V296"/><path d="M1508 296 H1536"/><path d="M1513 302 H1531"/><path d="M1518 308 H1526"/></g>
+  <text x="1522" y="324" class="sub" text-anchor="middle">SIG</text>
+  <text x="1494" y="244" class="wn">L23</text>
+
+  <path class="w sig" d="M1160 300 H1195 V380 H1240"/>
+  <text x="1166" y="330" class="wn" fill="#1565c0">L24</text>
+
+  <path class="w neg" d="M1490 380 H1552 V412"/>
+  <g class="gs"><path d="M1552 412 V426"/><path d="M1538 426 H1566"/><path d="M1543 432 H1561"/><path d="M1548 438 H1556"/></g>
+  <text x="1552" y="454" class="sub" text-anchor="middle">SIG</text>
+  <text x="1494" y="374" class="wn">L25</text>
+
+  <path class="w sig" d="M540 875 H600 V460 H890"/>
+  <text x="608" y="620" class="wn" fill="#1565c0">L26</text>
+
+  <path class="w neg" d="M400 990 V1022"/>
+  <g class="gs"><path d="M400 1022 V1036"/><path d="M386 1036 H414"/><path d="M391 1042 H409"/><path d="M396 1048 H404"/></g>
+  <text x="400" y="1064" class="sub" text-anchor="middle">SIG</text>
+  <text x="408" y="1012" class="wn">L27</text>
+
+  <path class="w mot hv" d="M1190 840 H1270"/>
+  <text x="1208" y="834" class="wn" fill="#6a1b9a">L28</text>
+
+  <path class="w mot hv" d="M1190 890 H1270"/>
+  <text x="1208" y="884" class="wn" fill="#6a1b9a">L29</text>
+
+  <!-- ============ notes ============ -->
+  <text x="30" y="1096" class="note">1. SW1 OFF while charging AND while flashing. The charger sits on the pack permanently; with a load attached it counts the quiescent current and never terminates the charge cycle.</text>
+  <text x="30" y="1114" class="note">2. The BM balance tap must be wired, even though both cells are individually protected. Without BM the IP2326 does not balance and one cell runs ahead.</text>
+  <text x="30" y="1132" class="note">3. Set the buck to 5.0 V using an ADJUSTABLE MP1584EN. The 5V pin of the XIAO feeds the on-board SGM40567, which wants to see ~4.5–5.5 V, so 4.6 V is too tight. A fixed Mini-560 is out: it no longer reaches 5 V below ≈6.5 V input.</text>
+  <text x="30" y="1150" class="note">4. On the C5, D0 (GPIO1) is the ONLY ADC on the header, so the pack voltage divider has to go there. Motor control therefore moves to D4/D5: IN1/IN2 are digital inputs (PWM square wave) and can sit on any GPIO.</text>
+  <text x="30" y="1168" class="note">5. D2 (GPIO25) and D3 (GPIO7) are strapping pins on the C5 — leave them free and never hang a pull-up or pull-down on them. D6/D7 are the UART: keep free for the boot log and serial debug.</text>
+  <text x="30" y="1186" class="note">6. C3/C4 are HF decoupling for the H-bridge, not a brownout buffer: at 1 A, 100 µF holds the voltage for only ~100 µs per volt. Brownout is solved by the buck choice and the low-battery threshold.</text>
+  <text x="30" y="1204" class="warn">7. SW1: the SS12D00 is rated 0.3–0.5 A and carries the full motor current here (0.7–1 A stalled) plus the inrush of C3. Use a switch rated ≥2 A, or have it drive a P-MOSFET load switch. Add a 2 A fuse directly after SW1.</text>
+  <text x="30" y="1222" class="note">8. This module: EEP = nSLEEP, ULT = nFAULT (mangled silkscreen), channel A = IN1/IN2 → OUT1/OUT2. With the module disconnected, MEASURE EEP↔VCC: open or ±47 kΩ → run a wire from 3V3 to EEP (L17). Near 0 Ω → J1 is already closed, wick it off FIRST, otherwise you short 3V3 against the pack.</text>
+</svg>

@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1020" width="1400" height="1020" font-family="Segoe UI, Arial, sans-serif" font-size="13">
+  <style>
+    .box{fill:#f7f9fb;stroke:#33475b;stroke-width:1.6}
+    .hdr{font-weight:700;font-size:14px;fill:#16283c}
+    .pin{font-size:12px;fill:#33475b}
+    .sub{font-size:11px;fill:#6b7a8d}
+    .w{stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .pos{stroke:#c62828}
+    .neg{stroke:#212121}
+    .sig{stroke:#1565c0}
+    .v33{stroke:#ef6c00}
+    .wn{font-size:11px;font-weight:700;fill:#16283c}
+    .note{font-size:11.5px;fill:#4a5a6a}
+    .warn{font-size:11px;fill:#b71c1c;font-weight:600}
+    .ib{fill:#eef4fa;stroke:#1565c0;stroke-width:1.4;stroke-dasharray:6 3}
+  </style>
+
+  <rect x="0" y="0" width="1400" height="1020" fill="#ffffff"/>
+
+  <text x="40" y="34" font-size="19" class="hdr">REMOTE — wiring diagram rev F  ·  1S XTAR 26650 + XIAO ESP32-<tspan fill="#b71c1c">C5</tspan></text>
+  <text x="40" y="56" class="note">Wire numbers W1…W19 match rev D; W5, W8 and W9 are dropped. LEDs moved from D2/D3 to D9/D10 in rev F. Filled dot = connection. Crossing without a dot = NO connection.</text>
+
+  <line class="w pos" x1="960" y1="34" x2="995" y2="34"/><text x="1002" y="38" class="sub">batt +</text>
+  <line class="w v33" x1="1075" y1="34" x2="1110" y2="34"/><text x="1117" y="38" class="sub">3V3</text>
+  <line class="w sig" x1="1160" y1="34" x2="1195" y2="34"/><text x="1202" y="38" class="sub">signal</text>
+  <line class="w neg" x1="1270" y1="34" x2="1305" y2="34"/><text x="1312" y="38" class="sub">ground</text>
+
+  <!-- ================= BT1 ================= -->
+  <rect x="40" y="90" width="220" height="130" class="box"/>
+  <text x="56" y="116" class="hdr">BT1 — XTAR 26650</text>
+  <text x="56" y="136" class="pin">3.6 V · 6000 mAh · protected</text>
+  <text x="56" y="154" class="pin">button top</text>
+  <text x="56" y="180" class="sub">contact + = plate</text>
+  <text x="56" y="196" class="sub">contact − = spring</text>
+  <text x="110" y="212" class="pin" text-anchor="middle">+</text>
+  <text x="180" y="212" class="pin" text-anchor="middle">−</text>
+  <circle cx="110" cy="220" r="4" fill="#c62828"/>
+  <circle cx="180" cy="220" r="4" fill="#212121"/>
+
+  <!-- ================= TP4056 ================= -->
+  <rect x="40" y="290" width="220" height="190" class="box"/>
+  <text x="56" y="316" class="hdr">U1 — TP4056 USB-C</text>
+  <text x="56" y="334" class="pin">with protection (DW01+FS8205)</text>
+  <text x="110" y="284" class="pin" text-anchor="middle">B+</text>
+  <text x="180" y="284" class="pin" text-anchor="middle">B−</text>
+  <circle cx="110" cy="290" r="4" fill="#c62828"/>
+  <circle cx="180" cy="290" r="4" fill="#212121"/>
+  <text x="246" y="404" class="pin" text-anchor="end">OUT+ ●</text>
+  <circle cx="260" cy="400" r="4" fill="#c62828"/>
+  <text x="132" y="470" class="pin">● OUT−</text>
+  <circle cx="120" cy="480" r="4" fill="#212121"/>
+  <text x="56" y="428" class="sub">Rprog 1.2k = 1 A · 2.4k (500 mA)</text>
+  <text x="56" y="443" class="sub">is better in a sealed case</text>
+  <rect x="30" y="345" width="14" height="34" fill="#33475b"/>
+  <text x="56" y="368" class="sub">USB-C</text>
+
+  <!-- ================= SW1 ================= -->
+  <rect x="360" y="90" width="170" height="120" class="box"/>
+  <text x="376" y="116" class="hdr">SW1 — SS12D00</text>
+  <text x="376" y="136" class="pin">1P2T slide switch</text>
+  <text x="376" y="172" class="sub">middle = common</text>
+  <text x="376" y="188" class="sub">outer pin 3 = leave free</text>
+  <text x="352" y="154" class="pin" text-anchor="end">2</text>
+  <circle cx="360" cy="150" r="4" fill="#c62828"/>
+  <text x="538" y="124" class="pin">1</text>
+  <circle cx="530" cy="120" r="4" fill="#c62828"/>
+  <text x="538" y="200" class="pin">3 n.c.</text>
+  <circle cx="530" cy="180" r="4" fill="none" stroke="#33475b" stroke-width="1.6"/>
+
+  <!-- ================= XIAO C5 ================= -->
+  <rect x="620" y="90" width="340" height="560" class="box"/>
+  <text x="635" y="116" class="hdr">U2 — Seeed XIAO ESP32-C5</text>
+  <text x="635" y="134" class="sub">powered from the BAT pads (cell voltage)</text>
+  <text x="635" y="150" class="sub">ADC1 = GPIO1…GPIO6. There is no ADC2.</text>
+  <text x="635" y="166" class="warn">D4 has no ADC · D2/D3 strapping — leave all three free</text>
+
+  <circle cx="620" cy="180" r="4" fill="#c62828"/>
+  <text x="632" y="184" class="pin">BAT+ (solder pad, underside)</text>
+
+  <circle cx="960" cy="240" r="4" fill="#ef6c00"/>
+  <text x="950" y="244" class="pin" text-anchor="end">3V3 (output)</text>
+  <circle cx="960" cy="280" r="4" fill="#212121"/>
+  <text x="950" y="284" class="pin" text-anchor="end">GND</text>
+  <circle cx="960" cy="340" r="4" fill="#1565c0"/>
+  <text x="950" y="344" class="pin" text-anchor="end">D0 / GPIO1 · ADC1_CH0</text>
+  <text x="950" y="358" class="sub" text-anchor="end">only ADC on the header</text>
+  <circle cx="960" cy="390" r="4" fill="#1565c0"/>
+  <text x="950" y="394" class="pin" text-anchor="end">D1 / GPIO0 · LP-GPIO</text>
+  <text x="950" y="408" class="sub" text-anchor="end">valid for ext1 wake, not a strapping pin</text>
+  <circle cx="960" cy="435" r="4" fill="#1565c0"/>
+  <text x="950" y="439" class="pin" text-anchor="end">D9 / GPIO9</text>
+  <circle cx="960" cy="485" r="4" fill="#1565c0"/>
+  <text x="950" y="489" class="pin" text-anchor="end">D10 / GPIO10</text>
+
+  <!-- on-board battery sense -->
+  <rect x="635" y="510" width="310" height="115" class="ib"/>
+  <text x="647" y="530" class="hdr">BATTERY SENSE — on the XIAO itself</text>
+  <text x="647" y="547" class="sub">BAT+ → load switch (GPIO26) → 100k/100k → GPIO6</text>
+  <text x="647" y="563" class="sub">ratio 1:2 · VDIV_RATIO = 2.0 · 21 µA when enabled</text>
+  <text x="647" y="579" class="sub">GPIO6/GPIO26 are not on the header</text>
+  <text x="647" y="599" class="warn">50 kΩ source impedance, no capacitor possible —</text>
+  <text x="647" y="614" class="warn">average over 16 readings. See note 4.</text>
+
+  <circle cx="900" cy="650" r="4" fill="#212121"/>
+  <text x="950" y="644" class="pin" text-anchor="end">BAT− (solder pad, underside)</text>
+
+  <!-- ================= KY-023 ================= -->
+  <rect x="1030" y="90" width="320" height="225" class="box"/>
+  <text x="1045" y="116" class="hdr">J1 — KY-023 joystick</text>
+  <text x="1045" y="132" class="sub">34 × 26 mm · 2 pots of 10k = 0.66 mA</text>
+  <text x="1042" y="144" class="pin">+5V/VCC</text>
+  <circle cx="1030" cy="150" r="5" fill="#ef6c00"/>
+  <circle cx="1030" cy="190" r="4" fill="#212121"/>
+  <text x="1042" y="194" class="pin">GND</text>
+  <circle cx="1030" cy="245" r="4" fill="#1565c0"/>
+  <text x="1042" y="249" class="pin">VRy — throttle fwd/rev</text>
+  <text x="1042" y="279" class="pin">SW — horn, active low</text>
+  <circle cx="1030" cy="285" r="5" fill="#1565c0"/>
+  <text x="1045" y="306" class="sub">VRx: do not connect</text>
+  <path class="w v33" d="M1030 150 H1276 V196"/>
+  <path class="w sig" d="M1030 285 H1276 V232"/>
+  <rect x="1262" y="196" width="28" height="36" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="1298" y="210" class="pin">R5</text>
+  <text x="1298" y="224" class="pin">100k</text>
+
+  <!-- ================= LED1 ================= -->
+  <rect x="1030" y="380" width="320" height="110" class="box"/>
+  <text x="1045" y="406" class="hdr">LED1 — link (green, 3 mm)</text>
+  <circle cx="1030" cy="435" r="4" fill="#1565c0"/>
+  <line class="w sig" x1="1030" y1="435" x2="1068" y2="435"/>
+  <rect x="1068" y="423" width="58" height="24" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="1097" y="439" class="sub" text-anchor="middle">R1 470Ω</text>
+  <line class="w sig" x1="1126" y1="435" x2="1180" y2="435"/>
+  <polygon points="1180,424 1180,446 1204,435" fill="#2e7d32" stroke="#2e7d32"/>
+  <line x1="1204" y1="422" x2="1204" y2="448" stroke="#2e7d32" stroke-width="2.4"/>
+  <text x="1180" y="416" class="sub">A</text>
+  <text x="1208" y="416" class="sub">K</text>
+  <line class="w neg" x1="1204" y1="435" x2="1350" y2="435"/>
+  <circle cx="1350" cy="435" r="4" fill="#212121"/>
+  <text x="1045" y="472" class="sub">Vf ≤ 2.2 V required — see note 6</text>
+
+  <!-- ================= LED2 ================= -->
+  <rect x="1030" y="520" width="320" height="110" class="box"/>
+  <text x="1045" y="546" class="hdr">LED2 — battery low (red, 3 mm)</text>
+  <circle cx="1030" cy="575" r="4" fill="#1565c0"/>
+  <line class="w sig" x1="1030" y1="575" x2="1068" y2="575"/>
+  <rect x="1068" y="563" width="58" height="24" fill="#fff" stroke="#33475b" stroke-width="1.6"/>
+  <text x="1097" y="579" class="sub" text-anchor="middle">R2 470Ω</text>
+  <line class="w sig" x1="1126" y1="575" x2="1180" y2="575"/>
+  <polygon points="1180,564 1180,586 1204,575" fill="#c62828" stroke="#c62828"/>
+  <line x1="1204" y1="562" x2="1204" y2="588" stroke="#c62828" stroke-width="2.4"/>
+  <text x="1180" y="556" class="sub">A</text>
+  <text x="1208" y="556" class="sub">K</text>
+  <line class="w neg" x1="1204" y1="575" x2="1350" y2="575"/>
+  <circle cx="1350" cy="575" r="4" fill="#212121"/>
+  <text x="1045" y="612" class="sub">solid = remote cell low · blinking = loco pack low</text>
+
+  <!-- ================= C2/C3 ================= -->
+  <rect x="400" y="640" width="240" height="120" class="box"/>
+  <text x="416" y="666" class="hdr">C2 / C3 — buffer block</text>
+  <text x="416" y="686" class="sub">C2 100 µF low-ESR</text>
+  <text x="416" y="702" class="sub">C3 100 nF, parallel</text>
+  <text x="416" y="724" class="sub">AS SHORT AS POSSIBLE, directly on</text>
+  <text x="416" y="738" class="sub">the BAT pads of the XIAO</text>
+  <circle cx="460" cy="640" r="4" fill="#c62828"/>
+  <circle cx="540" cy="760" r="4" fill="#212121"/>
+
+  <!-- ================= GND bus ================= -->
+  <rect x="40" y="830" width="1350" height="26" fill="#eceff1" stroke="#212121" stroke-width="2"/>
+  <text x="56" y="848" class="hdr">GND — star point: all grounds on ONE solder joint (or the GND island on the XIAO)</text>
+
+  <!-- ================= WIRES ================= -->
+  <path class="w pos" d="M110 220 V290"/>
+  <text x="118" y="258" class="wn" fill="#c62828">W1</text>
+
+  <path class="w neg" d="M180 220 V290"/>
+  <text x="188" y="258" class="wn">W2</text>
+
+  <path class="w pos" d="M260 400 H310 V150 H360"/>
+  <text x="316" y="290" class="wn" fill="#c62828">W3</text>
+
+  <path class="w pos" d="M530 120 H580 V180 H620"/>
+  <text x="586" y="112" class="wn" fill="#c62828">W4</text>
+
+  <path class="w neg" d="M120 480 V830"/>
+  <text x="128" y="660" class="wn">W6</text>
+
+  <path class="w neg" d="M900 650 V830"/>
+  <text x="908" y="750" class="wn">W7</text>
+
+  <path class="w v33" d="M960 240 H975 V150 H1030"/>
+  <text x="972" y="234" class="wn" fill="#ef6c00">W10</text>
+
+  <path class="w neg" d="M960 280 H990 V190 H1030"/>
+  <text x="968" y="296" class="wn">W11</text>
+
+  <path class="w sig" d="M960 340 H1005 V245 H1030"/>
+  <text x="966" y="332" class="wn" fill="#1565c0">W12</text>
+
+  <path class="w sig" d="M960 390 H1020 V285 H1030"/>
+  <text x="966" y="382" class="wn" fill="#1565c0">W13</text>
+
+  <path class="w sig" d="M960 435 H1030"/>
+  <text x="984" y="428" class="wn" fill="#1565c0">W14</text>
+
+  <path class="w sig" d="M960 485 H1000 V575 H1030"/>
+  <text x="966" y="502" class="wn" fill="#1565c0">W16</text>
+
+  <path class="w neg" d="M1350 435 H1375 V830"/>
+  <text x="1330" y="428" class="wn">W15</text>
+  <path class="w neg" d="M1350 575 H1375"/>
+  <circle cx="1375" cy="575" r="5" fill="#212121"/>
+  <text x="1330" y="568" class="wn">W17</text>
+
+  <path class="w pos" d="M580 180 V620 H460 V640"/>
+  <circle cx="580" cy="180" r="5" fill="#c62828"/>
+  <text x="588" y="420" class="wn" fill="#c62828">W18</text>
+
+  <path class="w neg" d="M540 760 V830"/>
+  <text x="548" y="800" class="wn">W19</text>
+
+  <circle cx="120" cy="830" r="5" fill="#212121"/>
+  <circle cx="540" cy="830" r="5" fill="#212121"/>
+  <circle cx="900" cy="830" r="5" fill="#212121"/>
+  <circle cx="1375" cy="830" r="5" fill="#212121"/>
+
+  <!-- ================= notes ================= -->
+  <text x="40" y="884" class="note">1. On the C5 only D0 (GPIO1) has an ADC on the header. ADC1 = GPIO1…GPIO6 and there is no ADC2 — so the Wi-Fi conflict of the S3 does not exist on this board.</text>
+  <text x="40" y="902" class="note">2. D4 is GPIO23 and has no ADC. The external divider R3/R4/C1 from rev D cannot work here and is dropped, together with wires W5, W8 and W9.</text>
+  <text x="40" y="920" class="note">3. Battery sensing runs through the divider on the XIAO itself: GPIO6 (ADC1_CH5), enabled by GPIO26. Neither reaches the header — nothing to solder, nothing to probe.</text>
+  <text x="40" y="938" class="note">4. That divider has 50 kΩ source impedance and you cannot add a capacitor as C1 did in rev D. Average over 16 readings in firmware; a single reading reads too low.</text>
+  <text x="40" y="956" class="note">5. SW1 OFF while charging AND while flashing. With the XIAO USB plugged in, the on-board SGM40567 tops up the cell and the battery reading always says "full".</text>
+  <text x="40" y="974" class="note">6. D2 (GPIO25) and D3 (GPIO7) are strapping pins on the C5 — leave free. That is why rev F puts the LEDs on D9/D10. D4 has no ADC, D6/D7 are the UART: keep those free too.</text>
+  <text x="40" y="992" class="note">7. R5 (100k) directly on the KY-023 between VCC and SW.   LED1: plain green LED with Vf ≤ 2.2 V, otherwise R1 = 220 Ω.   Mark cell polarity before fitting.</text>
+</svg>

@@ -1,0 +1,31 @@
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Editors / IDE
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.code-workspace
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# CAD backups and autosaves
+*.3dmbak
+*.rhl
+*.FCStd1
+*.FCBak
+
+# Build output / exports
+build/
+*.bin
+*.elf
+*.map
+
+# OS clutter
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store

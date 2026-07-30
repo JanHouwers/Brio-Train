@@ -1,0 +1,17 @@
+# Normalise line endings for text sources
+*.md        text
+*.cpp       text
+*.h         text
+*.ini       text
+*.svg       text
+*.txt       text
+
+# STEP files are text but huge and meaningless in a diff
+*.stp       text eol=lf -diff
+*.step      text eol=lf -diff
+
+# Binary CAD / mesh formats
+*.3dm       binary
+*.FCStd     binary
+*.stl       binary
+*.png       binary

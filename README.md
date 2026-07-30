@@ -27,8 +27,8 @@ firmware/
   loco/     PlatformIO project — receiver / drive controller  (rev D)
   remote/   PlatformIO project — handheld transmitter          (rev F)
 hardware/
-  wiring-loco.svg      wiring diagram, locomotive
-  wiring-remote.svg    wiring diagram, remote
+  wiring-loco.svg / .png     wiring diagram, locomotive (SVG is the source)
+  wiring-remote.svg / .png   wiring diagram, remote
 cad/
   Train.3dm / .stp             locomotive body + chassis
   Remote.3dm / .stp            remote enclosure

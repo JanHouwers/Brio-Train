@@ -8,6 +8,8 @@ setting.
 
 > Both ends now run on a C5. The remote is documented in [`wiring-remote.md`](wiring-remote.md).
 
+[![Locomotive wiring diagram rev D](../hardware/wiring-loco.png)](../hardware/wiring-loco.png)
+
 ## Read this first — four ways to get it wrong
 
 1. **The DRV8833 module used here (black, 6+6 pins) has J1 and a 47k pull-up to VCC.** And on this

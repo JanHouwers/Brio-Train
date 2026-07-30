@@ -10,6 +10,8 @@ The numbering W1–W19 is kept identical to rev D; **W5, W8 and W9 are dropped**
 > **Rev F versus rev E:** the two LEDs move from D2/D3 to **D9/D10**. GPIO25 and GPIO7 are strapping
 > pins on the C5; see "Strapping pins" below.
 
+[![Remote wiring diagram rev F](../hardware/wiring-remote.png)](../hardware/wiring-remote.png)
+
 ## What changed compared to rev D
 
 | Item | Rev D (S3) | Rev E/F (C5) | Why |

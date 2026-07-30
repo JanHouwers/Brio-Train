@@ -134,7 +134,8 @@ way you test the radio link, the headlight (D9) and the horn (D10) without a sin
      8.4 V as soon as you switch on.
 2. **Set the buck to 5.0 V** with a bench supply, before mounting. Adjustable MP1584EN, not a fixed
    Mini-560.
-3. **Lay wires L6–L29** (L18–L21 are dropped; that makes 25: L1–L17 + L22–L29).
+3. **Lay wires L6–L31** (L18–L21 are dropped; that makes 27: L1–L17 + L22–L29 + L30–L31, the
+   external USB-C charge socket).
 4. **L1–L5** (pack, charger, star point) last, and only then fit the cells.
 5. Verification measurements from the wire list — **motor still disconnected**.
 6. Reflash, calibrate `VDIV_CAL` against the multimeter on VBAT_SW, and only then connect the motor.
@@ -260,6 +261,8 @@ silent without any message — the packets are simply discarded.
 - **The locomotive enclosure has not been test-fitted against the wired electronics.** The CAD in
   [`../cad/`](../cad/) is the current source and print-ready meshes are in [`../stl/`](../stl/). The
   body is split into a chassis plus three top pieces (front, boiler, cab) so each prints with little
-  or no support; the three top pieces are glued together with superglue. What is still open is the
-  electronics side: the e-shelf tray from the earlier design no longer exists, so how the buck,
-  DRV8833 and XIAO are retained needs to be settled before wiring.
+  or no support; the three top pieces are glued together with superglue. The e-shelf tray from the
+  earlier design is gone — the boards mount in the chassis and the space inside the boiler and cab
+  takes the rest, so every board has to be insulated (Kapton) with no exposed conductors before it
+  goes in. Charging runs through a separate 2-wire USB-C socket (L30/L31) instead of the charger
+  board's own port.

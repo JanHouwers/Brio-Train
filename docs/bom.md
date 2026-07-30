@@ -25,6 +25,7 @@ off-the-shelf AA holder may be too tight.
 | 1 | M1 | N20 gearmotor | 6 V, ~150 rpm, metal gears, 3 mm D-shaft, body 12 × 10 × 24 mm | Drive. 2 A protected cells handle N20 stall (~0.7–1 A) fine |
 | 1 | U4 | DRV8833 module | Dual H-bridge breakout, ~18 × 15 mm, Vmax 10.8 V | Motor driver, runs directly off the 2S pack. One channel used |
 | 1 | U1 | 2S USB-C Li-ion charge module | IP2326-based, "2S 8.4 V USB-C balance charging board" | Built-in USB-C charging including balancing of both cells |
+| 1 | J2 | USB-C female connector, 2-wire, with snap-groove buckle | 3 A "fast charge" type, e.g. Greluma 5-pack (amazon.nl) | Charge socket. Its two leads solder to the charge input of U1, so the USB-C port of the charger board itself does not have to reach a wall |
 | 1 | U2 | Buck converter, **adjustable** | MP1584EN set to **5.0 V**, ≥1 A | 2S pack → 5V pin of the XIAO. **Not** a fixed Mini-560 — see below |
 | 4 | — | AA battery contacts | 2× spring (negative) + 2× button plate (positive), Keystone 5201/5203 style or from a scrap AA holder | Press into the printed battery bay |
 | 1 | SW1 | Slide switch, **≥ 2 A** | 1P2T, 3–4 mm travel | Master power. The SS12D00 from earlier revisions is too light — see below |
@@ -43,6 +44,7 @@ off-the-shelf AA holder may be too tight.
 | 1 | C5 | 10 nF ceramic | — | Across the motor terminals. Do not go larger: 100 nF burns 0.14 W at 20 kHz PWM |
 | — | — | Wire | AWG20 (power/motor), AWG22, AWG24, AWG26 (signals) | See the wire list for which gauge goes where |
 | — | — | Heat-shrink | — | — |
+| — | — | Kapton (polyimide) tape | 10–20 mm wide | Insulate every board before fitting. Everything ends up packed together inside the chassis and body |
 
 ## Remote
 

@@ -151,9 +151,12 @@ stands, but for a different reason than given earlier: the Mini-560 no longer re
 
 ## Order of assembly
 
-1. L6–L29 first: everything except the pack.
+1. L6–L31 first: everything except the pack.
 2. **L1–L5 (pack, charger, star point) last**, and only then fit the cells.
 3. Verification measurements at the bottom, and only then connect the motor.
+
+Insulate each board (Kapton tape) before it goes in — everything ends up packed together inside the
+chassis and body, with no exposed conductors allowed anywhere.
 
 ## Two grounds — this is not a detail
 
@@ -199,11 +202,29 @@ through, and your ADC zero shifts with the throttle.
 | L27 | SIG | R4 bottom side + C1 | **SIG — GND pin of the XIAO** | black | AWG26 |
 | L28 | MOTOR A | U4 pin **OUT1** | M1 terminal A | purple | **AWG20** |
 | L29 | MOTOR B | U4 pin **OUT2** | M1 terminal B | purple | **AWG20** |
+| L30 | VBUS | J2 USB-C socket, **+** lead | U1 charger, **charge input +** (5 V) | red | AWG24 |
+| L31 | VBUS− | J2 USB-C socket, **−** lead | U1 charger, **charge input −** | black | AWG24 |
 
 **Do not connect:** SW1 pin 3, DRV8833 **IN3, IN4, OUT3, OUT4** (channel B) and **ULT**, XIAO
 **D1, D2, D3, D6, D7, D8** and the BAT pads of the XIAO.
 
-That makes **25 wires**: L1–L17 and L22–L29.
+That makes **27 wires**: L1–L17, L22–L29 and L30–L31.
+
+### L30/L31 — the external charge socket
+
+The USB-C port on the charger board itself is not brought out through a wall. Instead, a separate
+2-wire USB-C female connector (J2, see [`bom.md`](bom.md)) is mounted where you want the socket and
+its two leads are soldered to the charge input of U1. Points to watch:
+
+- **Polarity.** The red lead is VBUS (+5 V), the black one is ground. Reversed, you feed 5 V
+  backwards into the charger.
+- **CC resistors.** A 2-wire socket only carries VBUS and GND. It needs the two 5.1 kΩ CC
+  pull-downs built in, otherwise a USB-C-to-USB-C charger will deliver nothing at all — the "3 A fast
+  charge" type in the BOM has them. A USB-A-to-USB-C cable works either way.
+- **This bypasses the charger's own USB-C connector**, not its charge circuitry: balancing, current
+  limit and termination are unchanged.
+- The wiring diagram `hardware/wiring-loco.svg` still shows the charger with its own USB-C port and
+  does not yet show L30/L31.
 
 **No wires, but do solder these:**
 

@@ -48,14 +48,22 @@ Wall count ≥ 3 for the wheels — the hub takes the drive load.
    M3×12 + washer. Stretch the second O-ring into the tread groove first.
 4. **Front axle**: push the Ø3×32 rod through the chassis bore, press a wheel onto each end
    (0.1–0.2 mm clearance under the rod so wheels and rod spin together).
-5. **Electronics**: 2S charger flat against the inside of the body rear wall — the USB-C opening sits
-   slightly left of centre (the board occupies the left ~two-thirds of the wall). The power switch
-   stands **vertically** in the slot near the right rear corner. Buck + DRV8833 + XIAO sit on top of
-   the battery bay. Wire per [`wiring-loco.md`](wiring-loco.md) — **firmware first, wiring second**,
-   and follow the order of assembly in that document.
+5. **Electronics**: there is no e-shelf tray any more. The boards are mounted in the chassis, and the
+   space inside the boiler and the cab takes the rest — with a bit of folding, everything fits.
 
-   > The separate e-shelf tray of the earlier design is not part of the current CAD; check how the
-   > boards are retained in `Train.3dm` before wiring them in.
+   **Insulate every board before fitting it**, for example with Kapton tape, and make sure there are
+   no exposed conductors anywhere: the boards end up pressed against each other and against the
+   printed walls, with a 2S pack behind them. Check that no strand sticks out of a solder joint and
+   that every splice is covered by heat-shrink.
+
+   The power switch stands **vertically** in the slot near the right rear corner. Wire per
+   [`wiring-loco.md`](wiring-loco.md) — **firmware first, wiring second**, and follow the order of
+   assembly in that document.
+
+   **Charge socket**: the USB-C port of the 2S charger board is not brought out through the wall.
+   Instead, use a separate 2-wire USB-C female connector with a snap-groove buckle (see
+   [`bom.md`](bom.md)) and solder its two leads to the charge input of the charger board. That leaves
+   the charger free to sit wherever it fits and puts the socket where you want it.
 6. **Magnets**: check the polarity against a real Brio wagon **before** gluing the Ø10×3 magnets into
    the coupler pockets (epoxy).
 7. **Body**: the body is three printed pieces on top of the chassis — front, boiler and cab. The

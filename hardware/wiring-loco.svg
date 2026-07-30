@@ -65,7 +65,7 @@
   <rect x="30" y="500" width="14" height="40" fill="#33475b"/>
   <text x="56" y="628" class="sub">USB-C</text>
 
-  <!-- ============ ground-legenda ============ -->
+  <!-- ============ ground legend ============ -->
   <rect x="40" y="690" width="230" height="196" class="box"/>
   <text x="56" y="716" class="hdr">GROUND — two nodes</text>
   <g class="gp"><path d="M64 730 V744"/><path d="M50 744 H78"/><path d="M55 750 H73"/><path d="M60 756 H68"/></g>
@@ -187,7 +187,7 @@
   <circle cx="840" cy="690" r="4" fill="#c62828"/>
   <circle cx="840" cy="740" r="4" fill="#212121"/>
 
-  <!-- ============ deler ============ -->
+  <!-- ============ divider ============ -->
   <rect x="300" y="790" width="240" height="200" class="box"/>
   <text x="315" y="814" class="hdr">Pack voltage divider + filter</text>
   <circle cx="400" cy="790" r="4" fill="#c62828"/>
@@ -212,7 +212,7 @@
   <text x="446" y="938" class="sub">C1 100 nF</text>
   <text x="315" y="982" class="sub">8.4 V → 2.80 V · 28 µA</text>
 
-  <!-- ============ koplamp ============ -->
+  <!-- ============ headlight ============ -->
   <rect x="1240" y="200" width="250" height="100" class="box"/>
   <text x="1256" y="222" class="hdr">LED1 — headlight (white)</text>
   <circle cx="1240" cy="250" r="4" fill="#1565c0"/>

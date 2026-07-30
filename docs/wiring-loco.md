@@ -223,8 +223,8 @@ its two leads are soldered to the charge input of U1. Points to watch:
   charge" type in the BOM has them. A USB-A-to-USB-C cable works either way.
 - **This bypasses the charger's own USB-C connector**, not its charge circuitry: balancing, current
   limit and termination are unchanged.
-- The wiring diagram `hardware/wiring-loco.svg` still shows the charger with its own USB-C port and
-  does not yet show L30/L31.
+- In `hardware/wiring-loco.svg` the socket is drawn as **J2** at the left, with L30/L31 running to
+  the two charge input pads of U1; the charger's own USB-C port is marked unused.
 
 **No wires, but do solder these:**
 

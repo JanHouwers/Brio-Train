@@ -19,9 +19,9 @@ from the CAD.
 The locomotive body is split into four printable pieces — chassis, boiler, cab and front — instead of
 the single body of earlier revisions.
 
-**Which wheel is which:** `loco-wheel-driven` is the thicker one (7.6 mm) and carries the belt hub;
-`loco-wheel-plain` (5.0 mm) is the running wheel, used twice at the front and once at the rear left.
-If your build disagrees, check the two files against the CAD before printing four wheels.
+**Which wheel is which:** `loco-wheel-driven` is the thicker one (7.6 mm, `Pulley001` in the CAD) and
+carries the belt hub — it goes on the rear right. `loco-wheel-plain` (5.0 mm) is the running wheel:
+twice at the front and once at the rear left.
 
 ## Mesh quality
 

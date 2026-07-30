@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1270" width="1600" height="1270" font-family="Segoe UI, Arial, sans-serif" font-size="13">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-190 0 1790 1290" width="1790" height="1290" font-family="Segoe UI, Arial, sans-serif" font-size="13">
   <style>
     .box{fill:#f7f9fb;stroke:#33475b;stroke-width:1.6}
     .hdr{font-weight:700;font-size:14px;fill:#16283c}
@@ -19,10 +19,10 @@
     .warn{font-size:11.5px;fill:#b71c1c;font-weight:600}
   </style>
 
-  <rect x="0" y="0" width="1600" height="1270" fill="#ffffff"/>
+  <rect x="-190" y="0" width="1790" height="1290" fill="#ffffff"/>
 
   <text x="30" y="32" font-size="19" class="hdr">LOCOMOTIVE — wiring diagram rev D  ·  2S (2× XTAR 14500) + XIAO ESP32-C5 + DRV8833</text>
-  <text x="30" y="52" class="note">Every wire has a number (L1…L29) matching the wire list. Filled dot = connection. Crossing without a dot = NO connection. Thick line = motor current, AWG20.</text>
+  <text x="30" y="52" class="note">Every wire has a number (L1…L31) matching the wire list. Filled dot = connection. Crossing without a dot = NO connection. Thick line = motor current, AWG20.</text>
   <text x="30" y="70" class="warn">No nSLEEP/nFAULT control: nothing is soldered on the module. EEP is tied to 3V3 (L17), ULT is left floating. Firmware: HAVE_NSLEEP 0 and HAVE_NFAULT 0.</text>
 
   <line class="w pos" x1="1020" y1="32" x2="1052" y2="32"/><text x="1058" y="36" class="sub">batt +</text>
@@ -63,7 +63,29 @@
   <text x="56" y="591" class="sub">ship at 2 A. For 1200 mAh cells</text>
   <text x="56" y="606" class="sub">max 1 A, preferably 0.5 A (ISET resistor).</text>
   <rect x="30" y="500" width="14" height="40" fill="#33475b"/>
-  <text x="56" y="628" class="sub">USB-C</text>
+  <circle cx="40" cy="565" r="4" fill="#c62828"/>
+  <circle cx="40" cy="600" r="4" fill="#212121"/>
+  <text x="36" y="558" class="pin" text-anchor="end">IN+</text>
+  <text x="36" y="593" class="pin" text-anchor="end">IN−</text>
+  <text x="56" y="628" class="sub">board USB-C port unused — charge via J2</text>
+
+  <!-- ============ J2 external USB-C charge socket ============ -->
+  <rect x="-172" y="478" width="150" height="132" class="box"/>
+  <text x="-160" y="502" class="hdr">J2 — USB-C</text>
+  <text x="-160" y="520" class="pin">charge socket</text>
+  <text x="-160" y="540" class="sub">2-wire, 3 A type,</text>
+  <text x="-160" y="555" class="sub">snap-groove buckle</text>
+  <text x="-160" y="578" class="warn">needs 5.1k CC</text>
+  <text x="-160" y="592" class="warn">pull-downs built in</text>
+  <text x="-30" y="516" class="pin" text-anchor="end">+</text>
+  <text x="-30" y="549" class="pin" text-anchor="end">−</text>
+  <circle cx="-22" cy="512" r="4" fill="#c62828"/>
+  <circle cx="-22" cy="545" r="4" fill="#212121"/>
+
+  <path class="w pos" d="M-22 512 H-5 V565 H40"/>
+  <text x="-2" y="540" class="wn" fill="#c62828">L30</text>
+  <path class="w neg" d="M-22 545 H-15 V600 H40"/>
+  <text x="-12" y="618" class="wn">L31</text>
 
   <!-- ============ ground legend ============ -->
   <rect x="40" y="690" width="230" height="196" class="box"/>
@@ -360,4 +382,5 @@
   <text x="30" y="1186" class="note">6. C3/C4 are HF decoupling for the H-bridge, not a brownout buffer: at 1 A, 100 µF holds the voltage for only ~100 µs per volt. Brownout is solved by the buck choice and the low-battery threshold.</text>
   <text x="30" y="1204" class="warn">7. SW1: the SS12D00 is rated 0.3–0.5 A and carries the full motor current here (0.7–1 A stalled) plus the inrush of C3. Use a switch rated ≥2 A, or have it drive a P-MOSFET load switch. Add a 2 A fuse directly after SW1.</text>
   <text x="30" y="1222" class="note">8. This module: EEP = nSLEEP, ULT = nFAULT (mangled silkscreen), channel A = IN1/IN2 → OUT1/OUT2. With the module disconnected, MEASURE EEP↔VCC: open or ±47 kΩ → run a wire from 3V3 to EEP (L17). Near 0 Ω → J1 is already closed, wick it off FIRST, otherwise you short 3V3 against the pack.</text>
+  <text x="30" y="1240" class="note">9. J2 is a separate 2-wire USB-C socket; its leads (L30/L31) solder to the charge input pads of U1, so the board's own USB-C port never has to reach a wall. Mind the polarity, and use a socket with the 5.1 kΩ CC pull-downs built in — without them a USB-C-to-USB-C charger delivers nothing at all.</text>
 </svg>

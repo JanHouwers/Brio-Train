@@ -3,7 +3,7 @@
 > **Status note.** The mechanical instructions below were written for the earlier OpenSCAD/FreeCAD
 > version of the parts. The mechanics (drive concept, axles, magnets, screw positions) are unchanged,
 > but the current geometry lives in the Rhino/STEP files in [`../cad/`](../cad/), and the body is now
-> split into four printable pieces instead of one. Print-ready meshes are in
+> split into a chassis plus three glued top pieces instead of one part. Print-ready meshes are in
 > [`../stl/`](../stl/) — check the details below against that geometry before printing. The
 > electrical side is current: see [`wiring-loco.md`](wiring-loco.md) and
 > [`wiring-remote.md`](wiring-remote.md).
@@ -58,13 +58,13 @@ Wall count ≥ 3 for the wheels — the hub takes the drive load.
    > boards are retained in `Train.3dm` before wiring them in.
 6. **Magnets**: check the polarity against a real Brio wagon **before** gluing the Ø10×3 magnets into
    the coupler pockets (epoxy).
-7. **Body**: the body is three printed pieces on top of the chassis — front, boiler and cab. They
-   drop over the chassis and are secured with 2× M3×12 from below into the internal pillars. Both
-   screws sit off-centre: front at y = +10, rear at y = −12 (diagonally opposed), keeping the rear
-   wall free for the charger board. The cab front wall has a notch that fits over the motor box.
-
-   > The split into four pieces is new in this CAD revision; how the three body parts join to each
-   > other (glue, pins, screws) is not documented yet — check the mating features in `Train.3dm`.
+7. **Body**: the body is three printed pieces on top of the chassis — front, boiler and cab. The
+   split exists so that each piece can be printed without much support; **glue the three together
+   with superglue (cyanoacrylate)**. Dry-fit them first, and glue with the parts held against the
+   chassis so the joints line up with it. The assembled body then drops over the chassis and is
+   secured with 2× M3×12 from below into the internal pillars. Both screws sit off-centre: front at
+   y = +10, rear at y = −12 (diagonally opposed), keeping the rear wall free for the charger board.
+   The cab front wall has a notch that fits over the motor box.
 
 ## Assembly — remote
 

@@ -258,7 +258,8 @@ silent without any message — the packets are simply discarded.
   centre is not exactly at half, forward and reverse are not symmetric. The fix (scale per direction)
   has been discussed but is not in the code yet.
 - **The locomotive enclosure has not been test-fitted against the wired electronics.** The CAD in
-  [`../cad/`](../cad/) is the current source and print-ready meshes are in [`../stl/`](../stl/), but
-  the body is now split into four pieces (chassis, front, boiler, cab) and how those three body parts
-  join to each other is not documented. The e-shelf tray from the earlier design no longer exists, so
-  how the buck, DRV8833 and XIAO are retained needs to be settled before wiring.
+  [`../cad/`](../cad/) is the current source and print-ready meshes are in [`../stl/`](../stl/). The
+  body is split into a chassis plus three top pieces (front, boiler, cab) so each prints with little
+  or no support; the three top pieces are glued together with superglue. What is still open is the
+  electronics side: the e-shelf tray from the earlier design no longer exists, so how the buck,
+  DRV8833 and XIAO are retained needs to be settled before wiring.

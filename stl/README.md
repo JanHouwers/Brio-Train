@@ -16,8 +16,11 @@ from the CAD.
 | `remote-bottom.stl` | 1 | 170.0 × 56.0 × 22.0 | 6,410 | `Remote.stp` → `Remote bottom` |
 | `remote-top.stl` | 1 | 170.0 × 56.0 × 29.2 | 25,984 | `Remote.stp` → `Remote top` |
 
-The locomotive body is split into four printable pieces — chassis, boiler, cab and front — instead of
-the single body of earlier revisions.
+The locomotive body is split into four printable pieces — chassis, front, boiler and cab — instead of
+the single body of earlier revisions. **The split exists to keep support material to a minimum:**
+each piece prints in an orientation that needs little or none. The three top pieces (front, boiler,
+cab) are **glued together with superglue (cyanoacrylate)**; only the assembled body is screwed to the
+chassis.
 
 **Which wheel is which:** `loco-wheel-driven` is the thicker one (7.6 mm, `Pulley001` in the CAD) and
 carries the belt hub — it goes on the rear right. `loco-wheel-plain` (5.0 mm) is the running wheel:

@@ -18,14 +18,22 @@ match the wire lists exactly.
 
 ## Re-rendering
 
-Any SVG renderer will do. With Chrome or Edge headless:
+**This is automated.** Push a changed SVG and the
+[`Render wiring diagrams`](../.github/workflows/render-diagrams.yml) workflow re-renders both PNGs
+and commits them back. Pull requests do not get a commit; there the workflow fails if the committed
+PNGs no longer match their SVG, so a stale image cannot be merged.
 
-```bash
-chrome --headless --disable-gpu --hide-scrollbars \
-       --default-background-color=ffffffff --force-device-scale-factor=2 \
-       --window-size=1790,1290 --screenshot=wiring-loco.png \
-       file:///absolute/path/to/wiring-loco.svg
+To do it by hand — after editing an SVG locally, or to check the result before pushing:
+
+```powershell
+pwsh tools/render-diagrams.ps1
+# or, with Windows PowerShell:
+powershell -ExecutionPolicy Bypass -File tools\render-diagrams.ps1
 ```
 
-The `--window-size` must match the SVG's own `width`/`height` (1790 × 1290 for the locomotive,
-1400 × 1020 for the remote); the scale factor then doubles the output resolution.
+The script finds Chrome or Edge, reads each SVG's own `width`/`height`, renders at 2× that size and
+verifies the resulting image really has those dimensions.
+
+**Render on Windows.** The diagrams specify `Segoe UI, Arial, sans-serif` and were laid out against
+Segoe UI metrics; a Linux renderer falls back to a different font and text starts to overflow its
+boxes. That is also why the workflow runs on `windows-latest`.

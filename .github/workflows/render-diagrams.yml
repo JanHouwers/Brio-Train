@@ -1,0 +1,70 @@
+name: Render wiring diagrams
+
+# The SVGs in hardware/ are the source; the PNGs beside them are derived.
+# Whenever an SVG changes, re-render the PNGs and commit them back, so the
+# images embedded in the documentation never go stale.
+
+on:
+  push:
+    paths:
+      - 'hardware/**.svg'
+      - 'tools/render-diagrams.ps1'
+      - '.github/workflows/render-diagrams.yml'
+  pull_request:
+    paths:
+      - 'hardware/**.svg'
+      - 'tools/render-diagrams.ps1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-diagrams-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    # Windows on purpose: the diagrams are laid out against Segoe UI metrics.
+    # A Linux runner falls back to a different font and the text overflows its
+    # boxes. Windows runners are free for public repositories.
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render PNGs from the SVG sources
+        shell: pwsh
+        run: ./tools/render-diagrams.ps1
+
+      - name: Show what changed
+        shell: bash
+        run: git status --short -- 'hardware/*.png'
+
+      # On a pull request we cannot push to the contributor's branch, so just
+      # report whether the committed PNGs were up to date.
+      - name: Check the PNGs are up to date (pull requests)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          if git diff --quiet -- 'hardware/*.png'; then
+            echo "PNGs are up to date."
+          else
+            echo "::error::The committed PNGs do not match the SVG sources."
+            echo "Run tools/render-diagrams.ps1 on Windows and commit the result."
+            exit 1
+          fi
+
+      - name: Commit the re-rendered PNGs
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          if git diff --quiet -- 'hardware/*.png'; then
+            echo "Nothing to commit; the PNGs were already up to date."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hardware/*.png
+          git commit -m "Re-render wiring diagram PNGs [skip ci]"
+          git push
